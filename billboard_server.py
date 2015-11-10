@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify, abort
 from pymongo import MongoClient
 import os
+import re
 import datetime
 
 def init_mongo():
@@ -25,7 +26,7 @@ def test():
 def reverse_lookup_artist():
 	artist=request.args['artist']
 	collection=mongo_database['reverse_lookup']
-	data=collection.find_one({'artist':artist})
+	data=collection.find_one({'artist':{'$regex':'^'+re.escape(artist)+'$','$options':'i'}})
 	if data is None:
 		abort(404)
 	data.pop('_id')
@@ -56,4 +57,5 @@ def get_chart():
 
 if __name__ == '__main__':
 	port = int(os.environ.get('PORT', 5000))
+	app.debug=True
 	app.run(host='0.0.0.0', port=port)
