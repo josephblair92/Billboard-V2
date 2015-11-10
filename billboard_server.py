@@ -1,15 +1,14 @@
 from flask import Flask, request, jsonify, abort
 from pymongo import MongoClient
+import os
 import datetime
 
 def init_mongo():
-	mongo_host='localhost'
-	mongo_port=27017
-	mongo_username=''
-	mongo_password=''
+	
+	#uri='mongodb://%s:%s@%s:%s/%s' % (mongo_username, mongo_password, mongo_host, mongo_port, mongo_dbname)
+
 	mongo_dbname='billboard'
-	#uri='mongodb://%s:%s@%s' % (mongo_username, mongo_password, mongo_host)
-	uri='mongodb://%s' % (mongo_host)
+	uri=os.environ['BILLBOARD_MONGO_URL']
 	mongo_client=MongoClient(uri)
 
 	global mongo_database
