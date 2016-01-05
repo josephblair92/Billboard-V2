@@ -1,8 +1,66 @@
 <html>
 <head>
 	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular.min.js"></script>
+	<script src="js/vendor/ui-bootstrap-tpls-0.14.3.min.js"></script>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">	
 </head>
 <body ng-app="myApp">
+
+	<div ng-controller="DatepickerDemoCtrl">
+
+        <div class="col-md-6">
+            <p class="input-group">
+              <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="status.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+            </p>
+        </div>
+
+	    <div style="display:inline-block; min-height:290px;">
+	      <uib-datepicker ng-model="dt" min-date="minDate" date-disabled="disabled(date, mode)" show-weeks="false" class="well well-sm"></uib-datepicker>
+	    </div>
+<!--
+	    <h4>Popup</h4>
+	    <div class="row">
+	        <div class="col-md-6">
+	            <p class="input-group">
+	              <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="status.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+	              <span class="input-group-btn">
+	                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+	              </span>
+	            </p>
+	        </div>
+
+	        <div class="col-md-6">
+	            <p class="input-group">
+	              <input type="date" class="form-control" uib-datepicker-popup ng-model="dt" is-open="status.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+	              <span class="input-group-btn">
+	                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+	              </span>
+	            </p>
+	        </div>
+	    </div>
+-->	    
+	    <!--
+	    <div class="row">
+	        <div class="col-md-6">
+	            <label>Format:</label> <select class="form-control" ng-model="format" ng-options="f for f in formats"><option></option></select>
+	        </div>
+	    </div>
+		-->
+
+	    
+	    <button type="button" class="btn btn-sm btn-info" ng-click="today()">Today</button>
+	    <button type="button" class="btn btn-sm btn-danger" ng-click="clear()">Clear</button>
+	    <button type="button" class="btn btn-sm btn-danger" ng-click="search(dt)">Search</button>
+	    <hr />
+	    <!-- <button type="button" class="btn btn-sm btn-default" ng-click="toggleMin()" uib-tooltip="After today restriction">Min date</button> -->
+	</div>
+
+
+
+
+
+
 	<div ng-controller="ChartViewController">
 		<h3>{{ chartData.date }}</h3>
 		<table>
@@ -18,6 +76,7 @@
 	<script src="js/app.js"></script>
 	<!-- Controllers -->
 	<script src="js/controllers/ChartViewController.js"></script>
+	<script src="js/vendor/datepicker.js"></script>
 	<!-- Services -->
 	<script src="js/services/ChartData.js"></script>
 
