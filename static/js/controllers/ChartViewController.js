@@ -1,8 +1,8 @@
 app.controller('ChartViewController',['$scope','ChartData',function($scope,ChartData)
 	{
 
-		$scope.$root.$on('loadChart', function(event, year, month, day) {
-			$scope.loadChart('billboard_singles', year, month, day);
+		$scope.$root.$on('loadChart', function(event, type, year, month, day) {
+			$scope.loadChart(type, year, month, day);
 		});
 
 		$scope.loadChart = function(type,year,month,day) {
