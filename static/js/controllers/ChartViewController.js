@@ -11,7 +11,6 @@ app.controller('ChartViewController',['$scope','ChartData',function($scope,Chart
 			if (month < 10)
 				month = "0" + month;
 			var dateStr = "" + month + day + year;
-			console.log(dateStr);
 			ChartData(type,dateStr).success(
 				function(data){
 					$scope.chartData=data
@@ -19,7 +18,7 @@ app.controller('ChartViewController',['$scope','ChartData',function($scope,Chart
 			);
 		};
 
-		$scope.loadChart('billboard_singles',2015,10,31);
+		$scope.loadChart('billboard_singles',2016,1,2);
 
 	}
 ]);

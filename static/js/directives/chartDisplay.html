@@ -1,0 +1,8 @@
+<h3>{{ data.date | date }}</h3>
+<table>
+	<tr ng-repeat="entry in data.entries">
+		<td style="margin:10px;">{{ entry.position }}</td>
+		<td style="margin:10px;">{{ entry.artist }}</td>
+		<td style="margin:10px;">{{ entry.item }}</td>
+	</tr>
+</table>

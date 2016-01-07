@@ -8,10 +8,6 @@ app.controller('ChartSearchController', function ($scope) {
   $scope.today();
   $scope.minDate = new Date(1940,01,01);
 
-  $scope.clear = function () {
-    $scope.dt = null;
-  };
-
   // Only allow Saturdays
   $scope.disabled = function(date, mode) {
     return ( mode === 'day' && ( date.getDay() != 6) );
@@ -27,7 +23,27 @@ app.controller('ChartSearchController', function ($scope) {
     $scope.dt = new Date(year, month, day);
   };
 
-  $scope.search = function(date) {
+  $scope.oneWeekForward = function() {
+    var date = getDateCopy($scope.dt);
+    date.setDate(date.getDate()+7);
+    $scope.dt=date;
+  }
+
+  $scope.oneWeekBackward = function() {
+    var date = getDateCopy($scope.dt);
+    date.setDate(date.getDate()-7);
+    $scope.dt=date;
+  }
+
+  var getDateCopy = function(date) {
+    year=date.getFullYear();
+    month=date.getMonth();
+    day=date.getDate();
+    return new Date(year,month,day);
+  }
+
+  $scope.search = function() {
+    var date = $scope.dt;
     year=date.getFullYear();
     month=date.getMonth()+1;
     day=date.getDate();
@@ -38,8 +54,6 @@ app.controller('ChartSearchController', function ($scope) {
     if (type === 'Albums')
       type='billboard_albums';
 
-    console.log('fire search');
-    console.log(type);
     $scope.$root.$emit('loadChart', type, year, month, day);
   }
 

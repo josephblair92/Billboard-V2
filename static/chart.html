@@ -30,23 +30,18 @@
 	    </div>
 	    
 	    <div style="text-align:center;">
+	    	<button type="button" class="btn btn-sm btn-primary" ng-click="oneWeekBackward()">Back One Week</button>
 			<button type="button" class="btn btn-sm btn-info" ng-click="today()">Today</button>
-			<button type="button" class="btn btn-sm btn-danger" ng-click="clear()">Clear</button>
+			<!-- <button type="button" class="btn btn-sm btn-danger" ng-click="clear()">Clear</button> -->
 			<button type="button" class="btn btn-sm btn-success" ng-click="search(dt)">Search</button>
+			<button type="button" class="btn btn-sm btn-primary" ng-click="oneWeekForward()">Forward One Week</button>
 		</div>
 	    <hr />
 	    
 	</div>
 
 	<div ng-controller="ChartViewController">
-		<h3>{{ chartData.date }}</h3>
-		<table>
-			<tr ng-repeat="entry in chartData.entries">
-				<td style="margin:10px;">{{ entry.position }}</td>
-				<td style="margin:10px;">{{ entry.artist }}</td>
-				<td style="margin:10px;">{{ entry.item }}</td>
-			</tr>
-		</table>
+		<chart-display data="chartData"></chart-display>
 	</div>
 
 	<!-- Modules -->
@@ -56,6 +51,8 @@
 	<script src="js/controllers/ChartSearchController.js"></script>
 	<!-- Services -->
 	<script src="js/services/ChartData.js"></script>
+	<!-- Directives -->
+	<script src="js/directives/chartDisplay.js"></script>
 
 </body>
 </html>
