@@ -1,0 +1,19 @@
+<div>
+	<h3>{{ data.artist }} - {{ selectedItemData.item_name }}</h3>
+	<h4 style="text-transform:capitalize;">{{ translateChartTypeToItemType(selectedItemData.chart_type) }}</h4>
+</div>
+
+<div>
+	<p>Entry position: {{ selectedItemData.entry_position }}</p>
+	<p>Peak position: {{ selectedItemData.peak_position }}</p>
+	<p>Dropoff position: {{ selectedItemData.dropoff_position }}</p>
+</div>
+
+<div>
+	<table style="border-spacing:10px; border-collapse:separate">
+		<tr ng-repeat="entry in selectedItemData.entries">
+			<td>{{ dateStrToDate(entry.date) | date }}</td>
+			<td>#{{ entry.position }}</td>
+		</tr>
+	</table>
+</div>

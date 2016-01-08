@@ -1,7 +1,8 @@
 <html>
 <head>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular.min.js"></script>
 	<script src="js/vendor/ui-bootstrap-tpls-0.14.3.min.js"></script>
+	<script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
 	<!-- Latest compiled and minified CSS -->
 		
 </head>
@@ -61,28 +62,12 @@
 	    </div>
 
 	    <div>
+	    	<div style="margin:20px;" reverse-lookup-graph chart-data="selectedItemData"></div>
+	    </div>
 
-	    	<div>
-		    	<h3>{{ data.artist }} - {{ selectedItemData.item_name }}</h3>
-		    	<h4 style="text-transform:capitalize;">{{ translateChartTypeToItemType(selectedItemData.chart_type) }}</h4>
-	    	</div>
-
-	    	<div>
-		    	<p>Entry position: {{ selectedItemData.entry_position }}</p>
-				<p>Peak position: {{ selectedItemData.peak_position }}</p>
-				<p>Dropoff position: {{ selectedItemData.dropoff_position }}</p>
-			</div>
-
-			<div>
-		    	<table style="border-spacing:10px; border-collapse:separate">
-		    		<tr ng-repeat="entry in selectedItemData.entries">
-		    			<td>{{ dateStrToDate(entry.date) | date }}</td>
-		    			<td>{{ entry.position }}</td>
-		    		</tr>
-		    	</table>
-		    </div>
-
-	   	</div>
+	    
+	    <reverse-lookup-display data="data" selected-item-data="selectedItemData"></reverse-lookup-display>
+	   	
 
 
 	</div>	
@@ -102,7 +87,8 @@
 	<!-- Services -->
 	<script src="js/services/ReverseLookupService.js"></script>
 	<!-- Directives -->
-	<script src="js/directives/chartDisplay.js"></script>
+	<script src="js/directives/reverseLookupDisplay.js"></script>
+	<script src="js/directives/reverseLookupGraph.js"></script>
 
 </body>
 </html>
