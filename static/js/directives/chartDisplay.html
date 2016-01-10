@@ -4,5 +4,15 @@
 		<td style="margin:10px;">{{ entry.position }}</td>
 		<td style="margin:10px;">{{ entry.artist }}</td>
 		<td style="margin:10px;">{{ entry.item }}</td>
+		<td style="margin:10px;">
+			<a ng-href="{{ getYoutubeSearchURL(entry.artist,entry.item) }}" target="_blank">
+				<img src="img/youtube_icon.png" width="20" height="20"/>
+			</a>
+		</td>
+		<td style="margin:10px;">
+			<a ng-href="{{ getSpotifySearchURL(entry.artist,entry.item) }}" target="_blank">
+				<img src="img/spotify_icon.png" width="20" height="20"/>
+			</a>
+		</td>
 	</tr>
 </table>
