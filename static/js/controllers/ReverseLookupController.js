@@ -7,7 +7,7 @@ app.controller('ReverseLookupController', ['$scope','ReverseLookupService',funct
 			function(data) {
 				$scope.data = data;
 				$scope.loading = false;
-				$scope.displayItemData(5);
+				<!-- $scope.displayItemData(5); -->
 			}
 		);
 	};

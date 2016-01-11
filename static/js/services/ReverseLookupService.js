@@ -1,7 +1,7 @@
 app.factory('ReverseLookupService',['$http', function($http) {		
 		
 		return function(artist) {
-			var url = '../reverse/artist';
+			var url = '../api/reverse/artist';
 			return $http.get(url, {
 				params: {
 					artist: artist

@@ -3,7 +3,7 @@ app.factory('ChartData',['$http', function($http) {
 		
 		
 		return function(type,date) {
-			var url = '../chart';
+			var url = '../api/chart';
 			return $http.get(url, {
 				params: {
 					type: type,

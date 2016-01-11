@@ -76,8 +76,6 @@ app.directive('reverseLookupGraph', function($window) {
 
 			function drawLineChart() {
 
-				console.log('drawing chart');
-
 				setChartParameters();
 
 				svg.append("svg:g")
