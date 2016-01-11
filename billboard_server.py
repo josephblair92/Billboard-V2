@@ -15,14 +15,14 @@ def init_mongo():
 	global mongo_database
 	mongo_database=mongo_client[mongo_dbname]
 
-app=Flask(__name__)
+app=Flask(__name__, static_url_path='')
 init_mongo()
 
 @app.route('/')
-def test():
-	return 'testing'
+def root():
+	return app.send_static_file('index.html')
 
-@app.route('/reverse/artist')
+@app.route('/api/reverse/artist')
 def reverse_lookup_artist():
 	artist=request.args['artist']
 	collection=mongo_database['reverse_lookup']
@@ -32,7 +32,7 @@ def reverse_lookup_artist():
 	data.pop('_id')
 	return jsonify(data)
 
-@app.route('/chart')
+@app.route('/api/chart')
 def get_chart():
 	chart_type=request.args['type']
 	if chart_type != 'billboard_singles' and chart_type != 'billboard_albums':
