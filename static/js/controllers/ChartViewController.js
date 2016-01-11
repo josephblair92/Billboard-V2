@@ -13,12 +13,13 @@ app.controller('ChartViewController',['$scope','ChartData',function($scope,Chart
 			var dateStr = "" + month + day + year;
 			ChartData(type,dateStr).success(
 				function(data){
-					$scope.chartData=data
+					$scope.chartData=data;
+					$scope.chartType=type;
 				}
 			);
 		};
 
-		$scope.loadChart('billboard_singles',2016,1,2);
+		//$scope.loadChart('billboard_singles',2016,1,2);
 
 	}
 ]);

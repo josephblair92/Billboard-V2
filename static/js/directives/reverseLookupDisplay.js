@@ -10,7 +10,21 @@ app.directive('reverseLookupDisplay', function() {
 					var dateComponents = dateStr.split('-');
 					date = new Date(dateComponents[0],dateComponents[1]-1,dateComponents[2]);
 					return date;
-				}				
+				};
+				$scope.getChartDisplayURL = function(dateStr) {
+
+					var date = $scope.dateStrToDate(dateStr);
+					var day = date.getDate();
+					var month = date.getMonth()+1;
+					var year = date.getFullYear();
+
+					if (day < 10)
+						day = "0" + day;
+					if (month < 10)
+						month = "0" + month;
+
+					return '#/displayChart?date=' + year + month + day;
+				};				
 			},
 			templateUrl:'js/directives/reverseLookupDisplay.html'
 		};

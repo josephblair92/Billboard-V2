@@ -15,7 +15,7 @@ app.factory('ChartData',['$http', function($http) {
 				var dateComponents = date.split('-');
 				date = new Date(dateComponents[0],dateComponents[1]-1,dateComponents[2]);
 				data.date=date;
-				console.log(date);
+				//console.log(date);
 				return data;
 			})
 			.error(function(err){

@@ -1,11 +1,10 @@
-app.controller('ChartSearchController', function ($scope) {
+app.controller('ChartSearchController', ['$scope', '$routeParams', function ($scope,$routeParams) {
   $scope.today = function() {
     var date = new Date();
     while (date.getDay() != 6)
       date.setDate(date.getDate()-1);
     $scope.dt = date;
   };
-  $scope.today();
   $scope.minDate = new Date(1940,01,01);
 
   // Only allow Saturdays
@@ -84,4 +83,15 @@ app.controller('ChartSearchController', function ($scope) {
     });
   });  
 
-});
+  if ($routeParams.date) {
+    var dateStr = $routeParams.date;
+    var year = parseInt(dateStr.substring(0,4));
+    var month = parseInt(dateStr.substring(4,6))-1;
+    var day = parseInt(dateStr.substring(6));
+    if (!isNaN(year) && !isNaN(month) && !isNaN(day)) {
+      $scope.setDate(year,month,day);
+      setTimeout($scope.search,50);
+    }
+  }
+
+}]);

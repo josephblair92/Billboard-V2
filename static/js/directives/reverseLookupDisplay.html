@@ -12,7 +12,11 @@
 <div>
 	<table style="border-spacing:10px; border-collapse:separate">
 		<tr ng-repeat="entry in selectedItemData.entries">
-			<td>{{ dateStrToDate(entry.date) | date }}</td>
+			<td>
+				<a ng-href="{{ getChartDisplayURL(entry.date) }}">
+					{{ dateStrToDate(entry.date) | date }}
+				</a>
+			</td>
 			<td>#{{ entry.position }}</td>
 		</tr>
 	</table>
