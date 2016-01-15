@@ -6,13 +6,22 @@ app.directive('reverseLookupGraph', function($window) {
 
 			//var chartEntries = scope[attrs.chartData].entries;
 			var chartEntries, chartData;
-			var padding = 20;
+			//var padding = 20;
+			var margins = {
+				top: 20,
+				right: 20,
+				bottom: 100,
+				left: 35
+			};
+			var width = 400;
+			var height = 400;
 			var pathClass = "path";
 			var xScale, yScale, xAxisGen, yAxisGen, lineFunction;
 			    
 			var d3 = $window.d3;
 			var rawSvg = elem.find("svg")[0];
 			var svg = d3.select(rawSvg);
+
 
 			function dateStrToDate(dateStr) {
 				var dateComponents = dateStr.split('-');
@@ -38,8 +47,8 @@ app.directive('reverseLookupGraph', function($window) {
 						dateStrToDate(chartEntries[chartEntries.length-1].date),
 					])
 					.range([
-						padding + 5,
-						rawSvg.clientWidth - padding
+						margins.left,
+						width - margins.right
 					]);
 
 				yScale = d3.scale.linear()
@@ -48,20 +57,22 @@ app.directive('reverseLookupGraph', function($window) {
 						1
 					])
 					.range([
-						rawSvg.clientHeight - padding, 
-						0
+						height - margins.bottom,
+						margins.top
 					]);
 
 				xAxisGen = d3.svg.axis()
 					.scale(xScale)
 					.orient("bottom")
-					.ticks(4)
+					.tickSize(1)
+					.tickSubdivide(true)
 					.tickFormat(d3.time.format('%b %d %Y'));
 
 				yAxisGen = d3.svg.axis()
 					.scale(yScale)
 					.orient("left")
-					.ticks(5);
+					.tickSize(1)
+					.tickSubdivide(true)
 
 				lineFunction = d3.svg.line()
 					.x(function(d) {
@@ -70,7 +81,7 @@ app.directive('reverseLookupGraph', function($window) {
 					.y(function(d) {
 						return yScale(d.position);
 					})
-					.interpolate("basis");
+					.interpolate("linear");
 
 			}
 
@@ -80,12 +91,17 @@ app.directive('reverseLookupGraph', function($window) {
 
 				svg.append("svg:g")
 					.attr("class", "x axis")
-					.attr("transform", "translate(0,350)")
-					.call(xAxisGen);
+					.attr("transform", "translate(0," + (height - margins.bottom) + ")")
+					.call(xAxisGen)
+					.selectAll("text")
+						.style("text-anchor","end")
+						.attr("dx", "-.8em")
+						.attr("dy", ".35em")
+						.attr("transform","rotate(-65)");
 
 				svg.append("svg:g")
 					.attr("class", "y axis")
-					.attr("transform", "translate(50,0)")
+					.attr("transform", "translate(" + margins.left + ",0)")
 					.call(yAxisGen);
 
 				svg.append("svg:path")		
@@ -95,7 +111,7 @@ app.directive('reverseLookupGraph', function($window) {
 						'stroke-width': 2,
 						'fill': 'none',
 						'class': pathClass
-					});
+					});			
 
 			}
 

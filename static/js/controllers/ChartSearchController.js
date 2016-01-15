@@ -48,10 +48,6 @@ app.controller('ChartSearchController', ['$scope', '$routeParams', function ($sc
     day=date.getDate();
 
     type=$scope.radioModel;
-    if (type === 'Singles')
-      type='billboard_singles';
-    if (type === 'Albums')
-      type='billboard_albums';
 
     $scope.$root.$emit('loadChart', type, year, month, day);
   }
@@ -64,7 +60,7 @@ app.controller('ChartSearchController', ['$scope', '$routeParams', function ($sc
 
   $scope.singleModel = 1;
 
-  $scope.radioModel = 'Singles';
+  $scope.radioModel = 'billboard_singles';
 
   $scope.checkModel = {
     left: false,
@@ -82,6 +78,10 @@ app.controller('ChartSearchController', ['$scope', '$routeParams', function ($sc
       }
     });
   });  
+
+  if ($routeParams.chartType) {
+    $scope.radioModel=$routeParams.chartType;
+  }  
 
   if ($routeParams.date) {
     var dateStr = $routeParams.date;

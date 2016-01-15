@@ -13,7 +13,7 @@
 	<table style="border-spacing:10px; border-collapse:separate">
 		<tr ng-repeat="entry in selectedItemData.entries">
 			<td>
-				<a ng-href="{{ getChartDisplayURL(entry.date) }}">
+				<a ng-href="{{ getChartDisplayURL(entry.date,selectedItemData.chart_type) }}">
 					{{ dateStrToDate(entry.date) | date }}
 				</a>
 			</td>

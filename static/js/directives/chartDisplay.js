@@ -22,6 +22,11 @@ app.directive('chartDisplay', function() {
 			};
 
 			$scope.getArtistReverseLookupURL = function(artist) {
+				var featuringStrings = [' Featuring', ' With'];
+				for (var i = 0; i < featuringStrings.length; i++) {
+					if (artist.indexOf(featuringStrings[i]) > -1)
+						artist = artist.substring(0,artist.indexOf(featuringStrings[i]));
+				}
 				return '#/reverseLookupDisplay?artist=' + encodeURIComponent(artist);
 			};
 

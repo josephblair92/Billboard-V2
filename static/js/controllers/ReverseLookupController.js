@@ -49,8 +49,8 @@ app.controller('ReverseLookupController', ['$scope','$routeParams','ReverseLooku
 	}
 
 	if ($routeParams.artist) {
+		
 		var artist = $routeParams.artist;
-		console.log(artist);
 		$scope.artistInput = artist;
 		$scope.search();
 
