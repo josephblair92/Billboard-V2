@@ -18,6 +18,8 @@
 	    	</span>
 	    </div>
 
+	    <!--
+
         <div>
             <p style="margin:10 auto 10;" class="input-group">
               <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="status.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
@@ -32,11 +34,20 @@
 	    <div style="text-align:center;">
 	    	<button type="button" class="btn btn-sm btn-primary" ng-click="oneWeekBackward()">Back One Week</button>
 			<button type="button" class="btn btn-sm btn-info" ng-click="today()">Today</button>
-			<!-- <button type="button" class="btn btn-sm btn-danger" ng-click="clear()">Clear</button> -->
 			<button type="button" class="btn btn-sm btn-success" ng-click="search(dt)">Search</button>
 			<button type="button" class="btn btn-sm btn-primary" ng-click="oneWeekForward()">Forward One Week</button>
 		</div>
-	    <hr />
+
+		-->
+
+      <div>
+      	<button type="button" class="btn btn-sm btn-primary" ng-click="oneWeekBackward()">&lt; {{ prevWeek(dt) | date : 'MMM d'}}</button>
+        <p style="display:inline-block;" class="input-group">
+          <input style="width:200px;" type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="datepickerPopup.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" ng-change="selectDate(dt)"/>
+          <button type="button" class="btn btn-default" ng-click="open()"><i class="glyphicon glyphicon-calendar"></i></button>
+		  <button type="button" class="btn btn-sm btn-primary" ng-click="oneWeekForward()">{{ nextWeek(dt) | date : 'MMM d'}} &gt;</button>    
+        </p>
+      </div>
 	    
 	</div>
 

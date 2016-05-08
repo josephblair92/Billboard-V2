@@ -12,6 +12,18 @@ app.controller('ChartSearchController', ['$scope', '$routeParams', function ($sc
     return ( mode === 'day' && ( date.getDay() != 6) );
   };
 
+  $scope.datepickerPopup = {
+    opened: false
+  };
+
+  $scope.dateOptions = {
+    showWeeks: false
+  }
+
+  $scope.open = function() {
+    $scope.datepickerPopup.opened = true;
+  };  
+
   $scope.toggleMin = function() {
     $scope.minDate = $scope.minDate ? null : new Date();
   };
@@ -19,30 +31,57 @@ app.controller('ChartSearchController', ['$scope', '$routeParams', function ($sc
   $scope.maxDate = new Date();
 
   $scope.setDate = function(year, month, day) {
-    $scope.dt = new Date(year, month, day);
+    $scope.setDT(new Date(year, month, day));
   };
 
+  $scope.setDT = function(dt) {
+    $scope.dt = dt;
+  }
+
+  $scope.prevWeek = function(dt) {
+    if (dt != null) {
+      var date = getDateCopy(dt);
+      return new Date(date.setDate(date.getDate()-7));    
+    }
+  }
+
+  $scope.nextWeek = function(dt) {
+    if (dt != null) {
+      var date = getDateCopy(dt);
+      return new Date(date.setDate(date.getDate()+7));    
+    }
+  }
+
+
   $scope.oneWeekForward = function() {
-    var date = getDateCopy($scope.dt);
-    date.setDate(date.getDate()+7);
-    $scope.dt=date;
+    var date = $scope.nextWeek($scope.dt);
+    $scope.setDT(date);
+    $scope.search(date);
   }
 
   $scope.oneWeekBackward = function() {
-    var date = getDateCopy($scope.dt);
-    date.setDate(date.getDate()-7);
-    $scope.dt=date;
+    var date = $scope.prevWeek($scope.dt);
+    $scope.setDT(date);
+    $scope.search(date);
   }
 
   var getDateCopy = function(date) {
+    /*
     year=date.getFullYear();
     month=date.getMonth();
     day=date.getDate();
     return new Date(year,month,day);
+    */
+    return new Date(date);
   }
 
-  $scope.search = function() {
-    var date = $scope.dt;
+  $scope.selectDate = function(dt) {
+    //console.log(dt);
+    $scope.setDT(dt);
+    $scope.search(dt);
+  }
+
+  $scope.search = function(date) {
     year=date.getFullYear();
     month=date.getMonth()+1;
     day=date.getDate();
@@ -90,7 +129,7 @@ app.controller('ChartSearchController', ['$scope', '$routeParams', function ($sc
     var day = parseInt(dateStr.substring(6));
     if (!isNaN(year) && !isNaN(month) && !isNaN(day)) {
       $scope.setDate(year,month,day);
-      setTimeout($scope.search,50);
+      setTimeout($scope.search,50,new Date(year, month, day));
     }
   }
 
