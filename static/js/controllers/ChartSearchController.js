@@ -132,5 +132,8 @@ app.controller('ChartSearchController', ['$scope', '$routeParams', function ($sc
       setTimeout($scope.search,50,new Date(year, month, day));
     }
   }
+  else {
+    $scope.today();
+  }
 
 }]);

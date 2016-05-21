@@ -5,10 +5,13 @@
 	<script src="js/vendor/ui-bootstrap-tpls-0.14.3.min.js"></script>		
 	<script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>	
 </head>
-<body ng-app="myApp">
+<body ng-app="myApp" style="background-color:#e6e6e6;">
 
-	<a href="/#/displayChart">Chart Display</a>
-	<a href="/#/reverseLookupDisplay">Reverse Lookup</a>
+	<div style="background-color:#262626;padding-top:5px;padding-bottom:5px;">
+		<span style="font-size:17px;color:#e6f3ff;margin:20px;">billboard</span>
+		<a style="font-size:17px;margin:10px;" href="/#/displayChart">Chart Display</a>
+		<a style="font-size:17px;margin:10px;" href="/#/reverseLookupDisplay">Reverse Lookup</a>
+	</div>
 	<div ng-view></div>
 
 	<!-- Modules -->
