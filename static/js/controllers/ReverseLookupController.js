@@ -13,7 +13,6 @@ app.controller('ReverseLookupController', ['$scope','$routeParams','ReverseLooku
 				$scope.loading = false;
 				if (itemName != null && chartType != null) {
 					var index = $scope.getIndexOfItem(data.charted_items,itemName,chartType);
-					console.log(index);
 					$scope.displayItemData(index);
 				}
 			}
@@ -39,8 +38,6 @@ app.controller('ReverseLookupController', ['$scope','$routeParams','ReverseLooku
 	}
 
 	$scope.getIndexOfItem = function(items,itemName,chartType) {
-		console.log(itemName);
-		console.log(chartType);
 		for (var i = 0; i < items.length; i++) {
 			console.log(items[i].item_name);
 			console.log(items[i].chart_type);
@@ -62,10 +59,50 @@ app.controller('ReverseLookupController', ['$scope','$routeParams','ReverseLooku
 		}
 	}
 
+	/*
+
 	$scope.dateStrToDate = function(dateStr) {
 		var dateComponents = dateStr.split('-');
 		date = new Date(dateComponents[0],dateComponents[1]-1,dateComponents[2]);
 		return date;
+	}
+
+	*/
+
+	$scope.fillMissingData = function(entries) {
+		var curDate = dateStrToDate(entries[0].date);
+		for (var i = 0; i < entries.length; i++) {
+			if (dateStrToDate(entries[i].date) > curDate) {
+				var entry = {
+					'date':dateToDateStr(curDate),
+					'position':null
+				};
+				entries.splice(i,0,entry);
+			}
+			curDate.setDate(curDate.getDate()+7);
+		}
+		return entries;
+	}
+
+	var dateStrToDate = function(dateStr) {
+		var dateComponents = dateStr.split('-');
+		return new Date(dateComponents[0],dateComponents[1]-1,dateComponents[2]);
+	}
+
+	var dateToDateStr = function(date) {
+		
+		if (date.getMonth()+1 < 10)
+			var monthStr = "0" + (date.getMonth()+1);
+		else
+			var monthStr = date.getMonth()+1;
+
+		if (date.getDate() < 10)
+			var dateStr = "0" + date.getDate();
+		else
+			var dateStr = date.getDate();
+
+		return date.getFullYear() + "-" + monthStr + "-" + dateStr;
+
 	}
 
 	if ($routeParams.artist) {

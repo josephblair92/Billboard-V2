@@ -81,7 +81,12 @@ app.directive('reverseLookupGraph', function($window) {
 					.y(function(d) {
 						return yScale(d.position);
 					})
-					.interpolate("linear");
+					.interpolate("linear")
+					.defined(
+						function(d) {
+							return d.position != null;
+						}
+					);
 
 			}
 
@@ -118,7 +123,7 @@ app.directive('reverseLookupGraph', function($window) {
 			function initialize() {
 				d3.select("svg").selectAll("*").remove();
 				chartData = scope[attrs.chartData];
-				chartEntries = chartData.entries;				
+				chartEntries = scope.fillMissingData(chartData.entries.slice(0));	
 			}
 
 			scope.drawChart = function() {
