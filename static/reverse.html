@@ -14,13 +14,13 @@
 
 		<div style="display:table;">
 
-			<div style="display:block;float:left;margin:10px;">
+			<form style="display:block;float:left;margin:10px;" ng-submit="search()">
 				<label style="display:block;" for="artist">Artist</label>
 				<span style="display:block;">
 					<input id="artist" type="text" ng-model="artistInput"/>
 					<button type="button" class="btn btn-sm btn-success" ng-click="search()">Search</button>
 				</span>
-			</div>
+			</form>
 
 			<div style="display:table-cell;vertical-align:middle;margin:20px;" class="btn-group" uib-dropdown uib-keyboard-nav>
 		        <button id="simple-btn-keyboard-nav" type="button" class="btn btn-primary" uib-dropdown-toggle>
