@@ -1,7 +1,7 @@
 app.directive('reverseLookupGraph', function($window) {
 	return {
 		restrict: 'EA',
-		template: "<svg width='400' height='400'></svg>",
+		template: "<svg style='background-color:#f2f2f2;border:1px solid #cccccc;' width='400' height='400'></svg>",
 		link: function(scope, elem, attrs) {
 
 			//var chartEntries = scope[attrs.chartData].entries;

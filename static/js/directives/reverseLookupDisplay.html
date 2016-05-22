@@ -1,19 +1,8 @@
-<div>
-	<h3>{{ data.artist }} - {{ selectedItemData.item_name }}</h3>
-	<h4 style="text-transform:capitalize;">{{ translateChartTypeToItemType(selectedItemData.chart_type) }}</h4>
-</div>
-
-<div>
-	<p>Entry position: {{ selectedItemData.entry_position }}</p>
-	<p>Peak position: {{ selectedItemData.peak_position }}</p>
-	<p>Dropoff position: {{ selectedItemData.dropoff_position }}</p>
-</div>
-
-<div>
-	<table style="border-spacing:10px; border-collapse:separate">
+<div style="float:left;">
+	<table style="border-spacing:10px; border-collapse:separate; background-color:#f2f2f2;border:1px solid #cccccc;margin:5px;">
 		<tr ng-repeat="entry in selectedItemData.entries">
 			<td>
-				<a ng-href="{{ getChartDisplayURL(entry.date,selectedItemData.chart_type) }}">
+				<a style="margin-left:3px;margin-right:12px;" ng-href="{{ getChartDisplayURL(entry.date,selectedItemData.chart_type) }}">
 					{{ dateStrToDate(entry.date) | date }}
 				</a>
 			</td>
