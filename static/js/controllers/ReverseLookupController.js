@@ -1,13 +1,21 @@
 app.controller('ReverseLookupController', ['$scope','$routeParams','ReverseLookupService',function($scope,$routeParams,ReverseLookupService) {
 	
 	$scope.search = function() {
+		$scope.searchAndSelect(null,null);
+	}
+
+	$scope.searchAndSelect = function(itemName,chartType) {
 		$scope.loading = true;
 		var artist = $scope.artistInput;
 		ReverseLookupService(artist).success(
 			function(data) {
 				$scope.data = data;
 				$scope.loading = false;
-				<!-- $scope.displayItemData(5); -->
+				if (itemName != null && chartType != null) {
+					var index = $scope.getIndexOfItem(data.charted_items,itemName,chartType);
+					console.log(index);
+					$scope.displayItemData(index);
+				}
 			}
 		);
 	};
@@ -28,6 +36,18 @@ app.controller('ReverseLookupController', ['$scope','$routeParams','ReverseLooku
 	$scope.displayItemData = function(index) {
 		$scope.selectedItemData = $scope.data.charted_items[index];
 		$scope.drawChart();
+	}
+
+	$scope.getIndexOfItem = function(items,itemName,chartType) {
+		console.log(itemName);
+		console.log(chartType);
+		for (var i = 0; i < items.length; i++) {
+			console.log(items[i].item_name);
+			console.log(items[i].chart_type);
+			if (items[i].item_name === itemName && items[i].chart_type === chartType) {
+				return i;
+			}
+		}
 	}
 
 	$scope.displayItemDataByName = function(itemName,chartType) {
@@ -52,13 +72,15 @@ app.controller('ReverseLookupController', ['$scope','$routeParams','ReverseLooku
 		
 		var artist = $routeParams.artist;
 		$scope.artistInput = artist;
-		$scope.search();
 
 		if ($routeParams.item && $routeParams.chartType) {
 			var itemName = $routeParams.item;
 			var chartType = $routeParams.chartType;
-			console.log(itemName);
-			setTimeout(function(){$scope.displayItemDataByName(itemName,chartType)},3000);
+			//setTimeout($scope.searchAndSelect,3000,itemName,chartType);
+			$scope.searchAndSelect(itemName,chartType);
+		}
+		else {
+			$scope.search();
 		}
 
 	}
