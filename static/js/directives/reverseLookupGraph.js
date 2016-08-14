@@ -150,7 +150,7 @@ app.directive('reverseLookupGraph', function($window) {
 								marker.attr("cy", yPos);
 								tooltip.html(entryData.date + "<br/>" + entryData.position)
 									.style("left", (d3.event.pageX) + "px")
-									.style("top", (d3.event.pageY - 28) + "px")
+									.style("top", (d3.event.pageY) + "px")
 							}
 						}
 					);	
