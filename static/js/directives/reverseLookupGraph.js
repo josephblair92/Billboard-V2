@@ -139,14 +139,14 @@ app.directive('reverseLookupGraph', function($window) {
 				  .style('fill', '#000000')
 				  .style('pointer-events', 'none');				
 				
-				svg.selectAll("path")
+				svg
 					.on("mousemove", function() {  
 							mouse = d3.mouse(this);
-							xPos = mouse[0];
-							yPos = mouse[1];
-							entryData = getDataFromXPos(xPos);
-							marker.attr("cx", xScale(dateStrToDate(entryData.date)));
-							marker.attr("cy", yScale(entryData.position));
+							entryData = getDataFromXPos(mouse[0]);
+							xPos = xScale(dateStrToDate(entryData.date));
+							yPos = yScale(entryData.position);
+							marker.attr("cx", xPos);
+							marker.attr("cy", yPos);
 							tooltip.html(entryData.date + "<br/>" + entryData.position)
 								.style("left", (d3.event.pageX) + "px")
 								.style("top", (d3.event.pageY - 28) + "px")
