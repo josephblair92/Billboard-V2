@@ -118,7 +118,7 @@ app.directive('reverseLookupGraph', function($window) {
 						'class': pathClass
 					});		
 				
-				var tooltip = d3.select("body").append("div")
+				var tooltip = d3.select("#reverse-lookup-graph").append("div")
 					.attr("id", "tooltip")
 					.style("position", "absolute")
 					.style("text-align", "center")
