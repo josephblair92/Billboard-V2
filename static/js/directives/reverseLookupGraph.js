@@ -17,7 +17,7 @@ app.directive('reverseLookupGraph', function($window) {
 			var height = 400;
 			var pathClass = "path";
 			var xScale, yScale, xAxisGen, yAxisGen, lineFunction;
-			    
+				
 			var d3 = $window.d3;
 			var rawSvg = elem.find("svg")[0];
 			var svg = d3.select(rawSvg);
@@ -116,12 +116,42 @@ app.directive('reverseLookupGraph', function($window) {
 						'stroke-width': 2,
 						'fill': 'none',
 						'class': pathClass
-					});			
-
+					});		
+				
+				var tooltip = d3.select("body").append("div")
+					.attr("id", "tooltip")
+					.style("position", "absolute")
+					.style("text-align", "center")
+					.style("padding", "5px")
+					.style("font", "12px sans-serif")
+					.style("background", "#c1d0f0")
+					.style("border", "0px")
+					.style("border-radius", "8px")
+					.style("opacity", "0.9")
+					.style("pointer-events", "none");
+				
+				svg.selectAll("path")
+					.on("mousemove", function() {  
+							xPos = d3.mouse(this);
+							xPos = xPos[0];
+							entryData = getDataFromXPos(xPos);
+							tooltip.html(entryData.date + "<br/>" + entryData.position)
+								.style("left", (d3.event.pageX) + "px")
+								.style("top", (d3.event.pageY - 28) + "px")
+						}
+					);	
 			}
+
+			function getDataFromXPos(xPos) {
+				var i = bisectDate(chartEntries, xScale.invert(xPos), 1);
+				return chartEntries[i];
+			}
+
+			var bisectDate = d3.bisector(function(d) {return dateStrToDate(d.date);}).left;
 
 			function initialize() {
 				d3.select("svg").selectAll("*").remove();
+				d3.select("body").select("#tooltip").remove();
 				chartData = scope[attrs.chartData];
 				chartEntries = scope.fillMissingData(chartData.entries.slice(0));	
 			}
