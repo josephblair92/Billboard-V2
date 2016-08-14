@@ -143,13 +143,15 @@ app.directive('reverseLookupGraph', function($window) {
 					.on("mousemove", function() {  
 							mouse = d3.mouse(this);
 							entryData = getDataFromXPos(mouse[0]);
-							xPos = xScale(dateStrToDate(entryData.date));
-							yPos = yScale(entryData.position);
-							marker.attr("cx", xPos);
-							marker.attr("cy", yPos);
-							tooltip.html(entryData.date + "<br/>" + entryData.position)
-								.style("left", (d3.event.pageX) + "px")
-								.style("top", (d3.event.pageY - 28) + "px")
+							if (entryData != null) {
+								xPos = xScale(dateStrToDate(entryData.date));
+								yPos = yScale(entryData.position);
+								marker.attr("cx", xPos);
+								marker.attr("cy", yPos);
+								tooltip.html(entryData.date + "<br/>" + entryData.position)
+									.style("left", (d3.event.pageX) + "px")
+									.style("top", (d3.event.pageY - 28) + "px")
+							}
 						}
 					);	
 			}
