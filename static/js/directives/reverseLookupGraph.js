@@ -22,6 +22,9 @@ app.directive('reverseLookupGraph', function($window) {
 			var rawSvg = elem.find("svg")[0];
 			var svg = d3.select(rawSvg);
 
+			var xScale;
+			var yScale;
+
 
 			function dateStrToDate(dateStr) {
 				var dateComponents = dateStr.split('-');
@@ -142,8 +145,8 @@ app.directive('reverseLookupGraph', function($window) {
 							xPos = mouse[0];
 							yPos = mouse[1];
 							entryData = getDataFromXPos(xPos);
-							marker.attr("cx", xPos);
-							marker.attr("cy", yPos);
+							marker.attr("cx", xScale(dateStrToDate(entryData.date)));
+							marker.attr("cy", yScale(entryData.position));
 							tooltip.html(entryData.date + "<br/>" + entryData.position)
 								.style("left", (d3.event.pageX) + "px")
 								.style("top", (d3.event.pageY - 28) + "px")
