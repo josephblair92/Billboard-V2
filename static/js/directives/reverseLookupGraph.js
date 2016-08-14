@@ -129,12 +129,21 @@ app.directive('reverseLookupGraph', function($window) {
 					.style("border-radius", "8px")
 					.style("opacity", "0.9")
 					.style("pointer-events", "none");
+
+				var marker = svg.append('circle')
+				  .attr('r', 3)
+				  .style('display', 'inherit')
+				  .style('fill', '#000000')
+				  .style('pointer-events', 'none');				
 				
 				svg.selectAll("path")
 					.on("mousemove", function() {  
-							xPos = d3.mouse(this);
-							xPos = xPos[0];
+							mouse = d3.mouse(this);
+							xPos = mouse[0];
+							yPos = mouse[1];
 							entryData = getDataFromXPos(xPos);
+							marker.attr("cx", xPos);
+							marker.attr("cy", yPos);
 							tooltip.html(entryData.date + "<br/>" + entryData.position)
 								.style("left", (d3.event.pageX) + "px")
 								.style("top", (d3.event.pageY - 28) + "px")
