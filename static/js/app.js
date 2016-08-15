@@ -15,6 +15,10 @@ app.config(function ($routeProvider) {
 			controller: 'ReverseLookupController',
 			templateUrl: 'reverse.html'
 		})
+		.when('/artistTimeline', {
+			controller: 'ArtistTimelineController',
+			templateUrl: 'timeline.html'
+		})		
 		.otherwise({
 			redirectTo:'/'
 		});
