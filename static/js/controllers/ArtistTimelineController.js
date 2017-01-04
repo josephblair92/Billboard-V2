@@ -89,4 +89,9 @@ app.controller('ArtistTimelineController', ['$scope','$routeParams','ReverseLook
 		return '#/displayChart?date=' + year + month + day + '&chartType=' + chartType;
 	};
 
+	if ($routeParams.artist) {
+		//var artist = $routeParams.artist;
+		lookup($routeParams.artist);
+	}
+
 }]);
