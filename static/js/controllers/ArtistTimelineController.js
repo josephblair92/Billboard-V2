@@ -3,6 +3,7 @@ app.controller('ArtistTimelineController', ['$scope','$routeParams','ReverseLook
 	var lookup = function(artist) {
 		ReverseLookupService(artist).success(
 			function(data) {
+				$scope.artist = data.artist;
 				var chartedItems = fillPeakDates(data.charted_items);
 				setChartedItems(chartedItems);
 			}
