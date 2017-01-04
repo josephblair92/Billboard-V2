@@ -22,7 +22,9 @@
 		<div>
 			<table style="border-spacing:10px; border-collapse:separate; background-color:#f2f2f2;border:1px solid #cccccc;margin:5px;">
 				<tr ng-repeat="charted_item in charted_items">
-					<td>{{ charted_item.item_name }}</td>
+					<td>
+						<a ng-href="{{ getItemReverseLookupURL(artistInput, charted_item.item_name, charted_item.chart_type) }}">{{ charted_item.item_name }}</a>
+					</td>
 					<td>{{ charted_item.peak_date }}</td>
 					<td>{{ charted_item.peak_position }}</td>
 				</tr>
