@@ -6,6 +6,7 @@ app.controller('ArtistTimelineController', ['$scope','$routeParams','ReverseLook
 				$scope.artist = data.artist;
 				var chartedItems = fillPeakDates(data.charted_items);
 				setChartedItems(chartedItems);
+				$scope.drawChart();
 			}
 		)
 	};
