@@ -157,41 +157,6 @@ app.directive('artistTimelineGraph', function($window) {
 							.duration(500)
 							.style("opacity", 0);
 					});
-				/*
-				var tooltip = d3.select("#reverse-lookup-graph").append("div")
-					.attr("id", "tooltip")
-					.style("position", "absolute")
-					.style("text-align", "center")
-					.style("padding", "5px")
-					.style("font", "12px sans-serif")
-					.style("background", "#c1d0f0")
-					.style("border", "0px")
-					.style("border-radius", "8px")
-					.style("opacity", "0.9")
-					.style("pointer-events", "none");
-
-				var marker = svg.append('circle')
-				  .attr('r', 3)
-				  .style('display', 'inherit')
-				  .style('fill', '#000000')
-				  .style('pointer-events', 'none');				
-				
-				svg
-					.on("mousemove", function() {  
-							mouse = d3.mouse(this);
-							entryData = getDataFromXPos(mouse[0]);
-							if (entryData != null) {
-								xPos = xScale(dateStrToDate(entryData.date));
-								yPos = yScale(entryData.position);
-								marker.attr("cx", xPos);
-								marker.attr("cy", yPos);
-								tooltip.html(entryData.date + "<br/>" + entryData.position)
-									.style("left", (d3.event.pageX) + "px")
-									.style("top", (d3.event.pageY) + "px")
-							}
-						}
-					);
-				*/
 			}
 
 			function getDataFromXPos(xPos) {
