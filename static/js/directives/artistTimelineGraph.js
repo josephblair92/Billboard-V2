@@ -145,7 +145,6 @@ app.directive('artistTimelineGraph', function($window) {
 						return yScale(d.peak_position);
 					})
 					.on("mouseover", function(d) {
-						console.log("mouseover");
 						tooltipDiv.transition()
 							.duration(100)
 							.style("opacity", 0.9);
