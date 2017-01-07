@@ -121,6 +121,18 @@ app.directive('artistTimelineGraph', function($window) {
 						'class': pathClass
 					});
 
+				var tooltipDiv = d3.select("body").append("div")
+					.attr("id", "tooltip")
+					.style("position", "absolute")
+					.style("text-align", "center")
+					.style("padding", "5px")
+					.style("font", "12px sans-serif")
+					.style("background", "#c1d0f0")
+					.style("border", "0px")
+					.style("border-radius", "8px")
+					.style("opacity", "0")
+					.style("pointer-events", "none");
+
 				svg.selectAll("dot")
 					.data(chartEntries)
 					.enter()
@@ -131,8 +143,22 @@ app.directive('artistTimelineGraph', function($window) {
 					})
 					.attr("cy", function(d) {
 						return yScale(d.peak_position);
+					})
+					.on("mouseover", function(d) {
+						console.log("mouseover");
+						tooltipDiv.transition()
+							.duration(100)
+							.style("opacity", 0.9);
+						tooltipDiv.html(d.item_name + "</br>" + d.peak_date + "</br>" + d.peak_position)
+							.style("left", (d3.event.pageX) + "px")
+							.style("top", (d3.event.pageY) + "px");
+					})
+					.on("mouseout", function(d) {
+						tooltipDiv.transition()
+							.duration(500)
+							.style("opacity", 0);
 					});
-				
+				/*
 				var tooltip = d3.select("#reverse-lookup-graph").append("div")
 					.attr("id", "tooltip")
 					.style("position", "absolute")
@@ -165,7 +191,8 @@ app.directive('artistTimelineGraph', function($window) {
 									.style("top", (d3.event.pageY) + "px")
 							}
 						}
-					);	
+					);
+				*/
 			}
 
 			function getDataFromXPos(xPos) {
