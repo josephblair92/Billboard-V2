@@ -34,10 +34,10 @@ app.directive('artistTimelineGraph', function($window) {
 			}	
 
 			function getLowestPosition() {
-				var lowestPosition = chartEntries[0].position;
+				var lowestPosition = chartEntries[0].peak_position;
 				for (var i = 0; i < chartEntries.length; i++) {
-					if (chartEntries[i].position > lowestPosition)
-						lowestPosition = chartEntries[i].position;
+					if (chartEntries[i].peak_position > lowestPosition)
+						lowestPosition = chartEntries[i].peak_position;
 				}
 				return lowestPosition;
 			}
@@ -46,8 +46,8 @@ app.directive('artistTimelineGraph', function($window) {
 
 				xScale = d3.time.scale()
 					.domain([
-						dateStrToDate(chartEntries[0].date),
-						dateStrToDate(chartEntries[chartEntries.length-1].date),
+						dateStrToDate(chartEntries[0].peak_date),
+						dateStrToDate(chartEntries[chartEntries.length-1].peak_date),
 					])
 					.range([
 						margins.left,
@@ -79,15 +79,15 @@ app.directive('artistTimelineGraph', function($window) {
 
 				lineFunction = d3.svg.line()
 					.x(function(d) {
-						return xScale(dateStrToDate(d.date));
+						return xScale(dateStrToDate(d.peak_date));
 					})
 					.y(function(d) {
-						return yScale(d.position);
+						return yScale(d.peak_position);
 					})
 					.interpolate("linear")
 					.defined(
 						function(d) {
-							return d.position != null;
+							return d.peak_position != null;
 						}
 					);
 
@@ -163,15 +163,21 @@ app.directive('artistTimelineGraph', function($window) {
 
 			var bisectDate = d3.bisector(function(d) {return dateStrToDate(d.date);}).left;
 
-			function initialize() {
+			function initialize(chartedItems) {
 				d3.select("svg").selectAll("*").remove();
 				d3.select("body").select("#tooltip").remove();
-				chartData = scope[attrs.chartData];
-				chartEntries = scope.fillMissingData(chartData.entries.slice(0));	
+				var chartedSingles = [];
+				for (var i = 0; i < chartedItems.length; i++) {
+					chartedItem = chartedItems[i];
+					if (chartedItem["chart_type"] === "billboard_singles") {
+						chartedSingles.push(chartedItem);
+					}
+				}
+				chartEntries = chartedSingles;
 			}
 
-			scope.drawChart = function() {
-				initialize();
+			scope.drawChart = function(chartedItems) {
+				initialize(chartedItems);
 				drawLineChart();
 			}
 
