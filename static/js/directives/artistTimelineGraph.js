@@ -119,7 +119,19 @@ app.directive('artistTimelineGraph', function($window) {
 						'stroke-width': 2,
 						'fill': 'none',
 						'class': pathClass
-					});		
+					});
+
+				svg.selectAll("dot")
+					.data(chartEntries)
+					.enter()
+					.append("circle")
+					.attr("r", 3.5)
+					.attr("cx", function(d) {
+						return xScale(dateStrToDate(d.peak_date));
+					})
+					.attr("cy", function(d) {
+						return yScale(d.peak_position);
+					});
 				
 				var tooltip = d3.select("#reverse-lookup-graph").append("div")
 					.attr("id", "tooltip")
