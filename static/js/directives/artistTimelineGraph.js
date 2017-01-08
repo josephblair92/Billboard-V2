@@ -178,6 +178,22 @@ app.directive('artistTimelineGraph', function($window) {
 					.style("opacity", "0")
 					.style("pointer-events", "none");
 
+
+				var mouseover = function(d) {
+					tooltipDiv.transition()
+						.duration(100)
+						.style("opacity", 0.9);
+					tooltipDiv.html(d.item_name + "</br>" + d.peak_date + "</br>" + d.peak_position)
+						.style("left", (d3.event.pageX) + "px")
+						.style("top", (d3.event.pageY) + "px");
+				};
+
+				var mouseout = function(d) {
+					tooltipDiv.transition()
+						.duration(500)
+						.style("opacity", 0);
+				};
+
 				svg.selectAll("dot")
 					.data(chartData["billboard_singles"])
 					.enter()
@@ -189,19 +205,23 @@ app.directive('artistTimelineGraph', function($window) {
 					.attr("cy", function(d) {
 						return yScale(d.peak_position);
 					})
-					.on("mouseover", function(d) {
-						tooltipDiv.transition()
-							.duration(100)
-							.style("opacity", 0.9);
-						tooltipDiv.html(d.item_name + "</br>" + d.peak_date + "</br>" + d.peak_position)
-							.style("left", (d3.event.pageX) + "px")
-							.style("top", (d3.event.pageY) + "px");
+					.on("mouseover", mouseover)
+					.on("mouseout", mouseout);
+
+				svg.selectAll("dot")
+					.data(chartData["billboard_albums"])
+					.enter()
+					.append("circle")
+					.attr("r", 3.5)
+					.attr("cx", function(d) {
+						return xScale(dateStrToDate(d.peak_date));
 					})
-					.on("mouseout", function(d) {
-						tooltipDiv.transition()
-							.duration(500)
-							.style("opacity", 0);
-					});
+					.attr("cy", function(d) {
+						return yScale(d.peak_position);
+					})
+					.on("mouseover", mouseover)
+					.on("mouseout", mouseout);
+
 			}
 
 			function clearGraph() {
