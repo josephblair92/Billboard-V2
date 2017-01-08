@@ -40,7 +40,9 @@ app.directive('artistTimelineGraph', function($window) {
 				for (chartName in chartData) {
 					if (chartData.hasOwnProperty(chartName)) {
 						var chartedItems = chartData[chartName];
-						lowestPositions.push(getLowestPosition(chartedItems));
+						if (chartedItems.length > 0) {
+							lowestPositions.push(getLowestPosition(chartedItems));
+						}
 					}
 				}
 				return Math.max.apply(null, lowestPositions);
@@ -51,7 +53,9 @@ app.directive('artistTimelineGraph', function($window) {
 				for (chartName in chartData) {
 					if (chartData.hasOwnProperty(chartName)) {
 						var chartedItems = chartData[chartName];
-						minDates.push(dateStrToDate(chartedItems[0].peak_date).getTime());
+						if (chartedItems.length > 0) {
+							minDates.push(dateStrToDate(chartedItems[0].peak_date).getTime());
+						}
 					}
 				}
 				return new Date(Math.min.apply(null, minDates));
@@ -62,7 +66,9 @@ app.directive('artistTimelineGraph', function($window) {
 				for (chartName in chartData) {
 					if (chartData.hasOwnProperty(chartName)) {
 						var chartedItems = chartData[chartName];
-						maxDates.push(dateStrToDate(chartedItems[chartedItems.length-1].peak_date).getTime());
+						if (chartedItems.length > 0) {
+							maxDates.push(dateStrToDate(chartedItems[chartedItems.length-1].peak_date).getTime());
+						}
 					}
 				}
 				return new Date(Math.max.apply(null, maxDates));
