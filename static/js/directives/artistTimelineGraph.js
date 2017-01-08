@@ -1,7 +1,7 @@
 app.directive('artistTimelineGraph', function($window) {
 	return {
 		restrict: 'EA',
-		template: "<svg style='background-color:#f2f2f2;border:1px solid #cccccc;' width='400' height='400'></svg>",
+		template: "<svg style='background-color:#f2f2f2;border:1px solid #cccccc;' width='700' height='500'></svg>",
 		link: function(scope, elem, attrs) {
 
 			var margins = {
@@ -10,8 +10,8 @@ app.directive('artistTimelineGraph', function($window) {
 				bottom: 100,
 				left: 35
 			};
-			var width = 400;
-			var height = 400;
+			var width = 700;
+			var height = 500;
 			var pathClass = "path";
 			var xScale, yScale, xAxisGen, yAxisGen, lineFunction;
 				
