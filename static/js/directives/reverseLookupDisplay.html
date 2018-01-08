@@ -1,8 +1,8 @@
-<div style="float:left;">
-	<table style="border-spacing:10px; border-collapse:separate; background-color:#f2f2f2;border:1px solid #cccccc;margin:5px;">
+<div id="chart-history-list-container">
+	<table id="chart-history-list">
 		<tr ng-repeat="entry in selectedItemData.entries">
 			<td>
-				<a style="margin-left:3px;margin-right:12px;" ng-href="{{ getChartDisplayURL(entry.date,selectedItemData.chart_type) }}">
+				<a class="chart-history-date-link" ng-href="{{ getChartDisplayURL(entry.date,selectedItemData.chart_type) }}">
 					{{ dateStrToDate(entry.date) | date }}
 				</a>
 			</td>
