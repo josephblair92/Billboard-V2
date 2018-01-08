@@ -1,25 +1,20 @@
-<!-- <h3>{{ data.date | date }}</h3> -->
-<table style="border-spacing:10px; border-collapse:separate; border: 1px solid #cccccc; background-color:#f2f2f2;margin:20px;">
+<table id="chart">
 	<tr ng-repeat="entry in data.entries">
-		<td style="margin:10px;">{{ entry.position }}</td>
-		<td style="margin:10px;">
-			<a ng-href="{{ getArtistReverseLookupURL(entry.artist) }}">
-				{{ entry.artist }}
-			</a>
+		<td>{{ entry.position }}</td>
+		<td>
+			<a ng-href="{{ getArtistReverseLookupURL(entry.artist) }}">{{ entry.artist }}</a>
 		</td>
-		<td style="margin:10px;">
-			<a ng-href="{{ getItemReverseLookupURL(entry.artist,entry.item,type) }}">
-				{{ entry.item }}
-			</a>
+		<td>
+			<a ng-href="{{ getItemReverseLookupURL(entry.artist,entry.item,type) }}">{{ entry.item }}</a>
 		</td>
-		<td style="margin:10px;">
+		<td>
 			<a ng-href="{{ getYoutubeSearchURL(entry.artist,entry.item) }}" target="_blank">
-				<img src="img/youtube_icon.png" width="20" height="20"/>
+				<img class="external-icon" src="img/youtube_icon.png"/>
 			</a>
 		</td>
-		<td style="margin:10px;">
+		<td>
 			<a ng-href="{{ getSpotifySearchURL(entry.artist,entry.item) }}" target="_blank">
-				<img src="img/spotify_icon.png" width="20" height="20"/>
+				<img class="external-icon" src="img/spotify_icon.png"/>
 			</a>
 		</td>
 	</tr>
