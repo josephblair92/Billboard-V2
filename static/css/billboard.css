@@ -1,3 +1,7 @@
+body {
+	background-color: #e6e6e6;
+}
+
 table {
 	border-spacing: 10px;
 	border-collapse: separate;
