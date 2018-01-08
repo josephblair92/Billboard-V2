@@ -10,14 +10,14 @@
 
 	<div ng-controller="ReverseLookupController">
 
-		<div style="display:table;">
+		<div>
 
 			<form style="display:block;float:left;margin:10px;" ng-submit="search()">
 				<input id="artist" type="text" placeholder="Artist" ng-model="artistInput"/>
 				<button type="button" class="btn btn-sm btn-success" ng-click="search()">Search</button>
 			</form>
 
-			<div style="display:table-cell;vertical-align:middle;margin:20px;" class="btn-group" uib-dropdown uib-keyboard-nav>
+			<div id="btn-results" class="btn-group" uib-dropdown uib-keyboard-nav>
 		        <button id="simple-btn-keyboard-nav" type="button" class="btn btn-primary" uib-dropdown-toggle>
 		            {{ loading === true ? "Loading..." : "Results" }} <span class="caret"></span>
 		        </button>
@@ -32,24 +32,22 @@
 
 		</div>
 
-	    <hr />
-
 		<div>
 			<div>
-				<h3 style="margin:10px;">{{ data.artist }} - {{ selectedItemData.item_name }}</h3>
+				<h3 id="chart-history-header">{{ data.artist }} - {{ selectedItemData.item_name }}</h3>
 			</div>
 			<div>
-				<span style="font-size:15px;font-weight:bold;text-transform:capitalize;margin:10px;">{{ translateChartTypeToItemType(selectedItemData.chart_type) }}</span>
-				<span style="margin:3px;"><span style="font-style:italic;color:#737373;">Entry</span> {{ selectedItemData.entry_position }}</span>
-				<span style="margin:3px;"><span style="font-style:italic;color:#737373;">Peak</span> {{ selectedItemData.peak_position }}</span>
-				<span style="margin:3px;"><span style="font-style:italic;color:#737373;">Dropoff</span> {{ selectedItemData.dropoff_position }}</span>
+				<span id="chart-history-item-type">{{ translateChartTypeToItemType(selectedItemData.chart_type) }}</span>
+				<span class="chart-history-summary-item"><span class="chart-history-summary-label">Entry</span> {{ selectedItemData.entry_position }}</span>
+				<span class="chart-history-summary-item"><span class="chart-history-summary-label">Peak</span> {{ selectedItemData.peak_position }}</span>
+				<span class="chart-history-summary-item"><span class="chart-history-summary-label">Dropoff</span> {{ selectedItemData.dropoff_position }}</span>
 			</div>
 		</div>	    
 
-	    <div style="margin:10px;">
+	    <div id="chart-history">
 
-		    <div style="float:left;overflow:hidden;">
-		    	<div id="reverse-lookup-graph" style="margin:5px;" reverse-lookup-graph chart-data="selectedItemData"></div>
+		    <div id="chart-history-graph-container">
+		    	<div id="reverse-lookup-graph" reverse-lookup-graph chart-data="selectedItemData"></div>
 		    </div>
 
 	    	<reverse-lookup-display data="data" selected-item-data="selectedItemData"></reverse-lookup-display>

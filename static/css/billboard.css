@@ -3,6 +3,44 @@
 	height: 20px;
 }
 
+.chart-history-summary-item {
+	margin: 3px;
+}
+
+.chart-history-summary-label {
+	font-style: italic;
+	color: #737373;
+}
+
+#btn-results {
+	margin: 10px;
+}
+
+#chart-history {
+	display: inline-block;
+	margin: 10px;
+}
+
+#chart-history-graph-container {
+	float: left;
+	overflow: hidden;
+}
+
+#reverse-lookup-graph {
+	margin: 5px;
+}
+
+#chart-history-header {
+	margin: 10px;	
+}
+
+#chart-history-item-type {
+	font-size: 15px;
+	font-weight: bold;
+	text-transform: capitalize;
+	margin: 10px;
+}
+
 #chart {
 	border-spacing: 10px;
 	border-collapse: separate;
