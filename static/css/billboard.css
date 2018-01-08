@@ -53,6 +53,13 @@
 	margin: 10px;
 }
 
+#reverse-lookup-svg {
+	background-color: #f2f2f2;
+	border: 1px solid #cccccc;
+	height: 400px;
+	width: 400px;
+}
+
 #chart-history-header {
 	margin: 10px;	
 }
@@ -84,4 +91,22 @@
 	display: inline-block;
 	font-size: 20px;
 	margin: 5px;
+}
+
+#tooltip {
+	position: absolute;
+	text-align: center;
+	padding: 5px;
+	font: 12px sans-serif;
+	background: #c1d0f0;
+	border: 0px;
+	border-radius: 8px;
+	opacity: 0.9;
+	pointer-events: none;
+}
+
+#graph-marker {
+	display: inherit;
+	fill: #000000;
+	pointer-events: none;
 }

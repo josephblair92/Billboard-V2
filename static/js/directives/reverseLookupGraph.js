@@ -1,7 +1,7 @@
 app.directive('reverseLookupGraph', function($window) {
 	return {
 		restrict: 'EA',
-		template: "<svg style='background-color:#f2f2f2;border:1px solid #cccccc;' width='400' height='400'></svg>",
+		template: "<svg id='reverse-lookup-svg'></svg>",
 		link: function(scope, elem, attrs) {
 
 			//var chartEntries = scope[attrs.chartData].entries;
@@ -122,22 +122,11 @@ app.directive('reverseLookupGraph', function($window) {
 					});		
 				
 				var tooltip = d3.select("#reverse-lookup-graph").append("div")
-					.attr("id", "tooltip")
-					.style("position", "absolute")
-					.style("text-align", "center")
-					.style("padding", "5px")
-					.style("font", "12px sans-serif")
-					.style("background", "#c1d0f0")
-					.style("border", "0px")
-					.style("border-radius", "8px")
-					.style("opacity", "0.9")
-					.style("pointer-events", "none");
+					.attr("id", "tooltip");
 
 				var marker = svg.append('circle')
-				  .attr('r', 3)
-				  .style('display', 'inherit')
-				  .style('fill', '#000000')
-				  .style('pointer-events', 'none');				
+				  .attr("id", "graph-marker")
+				  .attr('r', 3)			
 				
 				svg
 					.on("mousemove", function() {  
