@@ -8,6 +8,7 @@
 <body>
 
 	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/billboard.css">
 
 	<div ng-controller="ChartSearchController">
 
@@ -34,20 +35,13 @@
 		-->
 
       <div>
-      	<span style="margin:10px;display:inline-block;background-color:#f2f2f2;padding:7px;border:1px solid #cccccc;">
+      	<span id="chart-datepicker">
 	      	<button type="button" class="btn btn-sm btn-primary" ng-click="oneWeekBackward()">&lt; {{ prevWeek(dt) | date : 'MMM d'}}</button>
-
-	      	<span style="display:inline-block;padding-left:10px;padding-right:10px;">
-
-				<p style="display:inline-block;font-size:20px;margin:0px;padding-right:2px;" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="datepickerPopup.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" ng-change="selectDate(dt)"/>{{ dt | date }}</p> 
-				   		
-		        <button style="margin-left:2px;" type="button" class="btn btn-default" ng-click="open()"><i class="glyphicon glyphicon-calendar"></i></button>
-
-		    </span>
-
+			<span id="chart-selected-date" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="datepickerPopup.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" ng-change="selectDate(dt)"/>{{ dt | date }}</span> 	
+		    <button type="button" class="btn btn-default" ng-click="open()"><i class="glyphicon glyphicon-calendar"></i></button>
 	        <button type="button" class="btn btn-sm btn-primary" ng-click="oneWeekForward()">{{ nextWeek(dt) | date : 'MMM d'}} &gt;</button>
     	</span>
-	  	<span style="margin:10px;" class="btn-group">
+	  	<span class="btn-group">
         	<label class="btn btn-primary" ng-model="radioModel" uib-btn-radio="'billboard_singles'">Singles</label>
         	<label class="btn btn-primary" ng-model="radioModel" uib-btn-radio="'billboard_albums'">Albums</label>
 	  	</span>

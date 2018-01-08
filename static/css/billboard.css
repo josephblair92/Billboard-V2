@@ -1,0 +1,13 @@
+#chart-datepicker {
+	margin: 10px;
+	display: inline-block;
+	background-color: #f2f2f2;
+	padding: 7px;
+	border: 1px solid #cccccc;
+}
+
+#chart-selected-date {
+	display: inline-block;
+	font-size: 20px;
+	margin: 5px;
+}
