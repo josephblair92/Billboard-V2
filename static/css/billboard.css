@@ -1,3 +1,11 @@
+table {
+	border-spacing: 10px;
+	border-collapse: separate;
+	border: 1px solid #cccccc;
+	background-color: #f2f2f2;
+	margin: 20px;
+}
+
 .external-icon {
 	width: 20px;
 	height: 20px;
@@ -26,25 +34,17 @@
 	margin: 10px;
 }
 
-#chart-history-graph-container {
+.graph-container {
 	float: left;
 	overflow: hidden;
 }
 
+.graph {
+	margin: 5px;
+}
+
 #chart-history-list-container {
 	float: left;
-}
-
-#chart-history-list {
-	border-spacing: 10px;
-	border-collapse: separate;
-	background-color: #f2f2f2;
-	border: 1px solid #cccccc;
-	margin: 5px;
-}
-
-#reverse-lookup-graph {
-	margin: 5px;
 }
 
 #reverse-lookup-search-form {
@@ -71,14 +71,6 @@
 	margin: 10px;
 }
 
-#chart {
-	border-spacing: 10px;
-	border-collapse: separate;
-	border: 1px solid #cccccc;
-	background-color: #f2f2f2;
-	margin: 20px;
-}
-
 #chart-datepicker {
 	margin: 10px;
 	display: inline-block;
@@ -91,6 +83,10 @@
 	display: inline-block;
 	font-size: 20px;
 	margin: 5px;
+}
+
+#artist-timeline-search-container {
+	margin: 10px;
 }
 
 #tooltip {

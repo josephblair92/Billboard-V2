@@ -8,19 +8,19 @@
 
 	<div ng-controller="ArtistTimelineController">
 
-		<div style="display:table;">
-			<form style="display:block;float:left;margin:10px;" ng-submit="search()">
+		<div id="artist-timeline-search-container">
+			<form ng-submit="search()">
 				<input id="artist" type="text" placeholder="Artist" ng-model="artistInput"/>
 				<button type="button" class="btn btn-sm btn-success" ng-click="search()">Search</button>
 			</form>
 		</div>
 
-		<div style="float:left;overflow:hidden;">
-			<div style="margin:5px;" artist-timeline-graph chart-data=""></div>
+		<div class="graph-container">
+			<div class="graph" artist-timeline-graph chart-data=""></div>
 		</div>
 
 		<div>
-			<table style="border-spacing:10px; border-collapse:separate; background-color:#f2f2f2;border:1px solid #cccccc;margin:5px;">
+			<table>
 				<tr ng-repeat="charted_item in charted_items">
 					<td>
 						<a ng-href="{{ getItemReverseLookupURL(artist, charted_item.item_name, charted_item.chart_type) }}">{{ charted_item.item_name }}</a>
