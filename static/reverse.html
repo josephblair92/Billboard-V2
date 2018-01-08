@@ -11,8 +11,7 @@
 	<div ng-controller="ReverseLookupController">
 
 		<div>
-
-			<form style="display:block;float:left;margin:10px;" ng-submit="search()">
+			<form id="reverse-lookup-search-form" ng-submit="search()">
 				<input id="artist" type="text" placeholder="Artist" ng-model="artistInput"/>
 				<button type="button" class="btn btn-sm btn-success" ng-click="search()">Search</button>
 			</form>
@@ -29,7 +28,6 @@
 		        	</li>
 		        </ul>
 		    </div>		
-
 		</div>
 
 		<div>
@@ -45,13 +43,10 @@
 		</div>	    
 
 	    <div id="chart-history">
-
 		    <div id="chart-history-graph-container">
 		    	<div id="reverse-lookup-graph" reverse-lookup-graph chart-data="selectedItemData"></div>
 		    </div>
-
 	    	<reverse-lookup-display data="data" selected-item-data="selectedItemData"></reverse-lookup-display>
-	   	
 		</div>
 
 	</div>

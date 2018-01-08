@@ -30,6 +30,12 @@
 	margin: 5px;
 }
 
+#reverse-lookup-search-form {
+	display: block;
+	float: left;
+	margin: 10px;
+}
+
 #chart-history-header {
 	margin: 10px;	
 }
