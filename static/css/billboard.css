@@ -6,6 +6,11 @@ table {
 	margin: 20px;
 }
 
+.titlebar-link {
+	font-size :17px;
+	margin: 10px;
+}
+
 .external-icon {
 	width: 20px;
 	height: 20px;
@@ -41,6 +46,18 @@ table {
 
 .graph {
 	margin: 5px;
+}
+
+#titlebar {
+	background-color: #262626;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+#logo {
+	font-size: 17px;
+	color: #e6f3ff;
+	margin: 20px;
 }
 
 #chart-history-list-container {
