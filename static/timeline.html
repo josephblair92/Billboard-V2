@@ -10,11 +10,8 @@
 
 		<div style="display:table;">
 			<form style="display:block;float:left;margin:10px;" ng-submit="search()">
-				<label style="display:block;" for="artist">Artist</label>
-				<span style="display:block;">
-					<input id="artist" type="text" ng-model="artistInput"/>
-					<button type="button" class="btn btn-sm btn-success" ng-click="search()">Search</button>
-				</span>
+				<input id="artist" type="text" placeholder="Artist" ng-model="artistInput"/>
+				<button type="button" class="btn btn-sm btn-success" ng-click="search()">Search</button>
 			</form>
 		</div>
 
