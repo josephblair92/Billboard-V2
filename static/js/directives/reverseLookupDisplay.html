@@ -1,12 +1,10 @@
-<div id="chart-history-list-container">
-	<table>
-		<tr ng-repeat="entry in selectedItemData.entries">
-			<td>
-				<a class="chart-history-date-link" ng-href="{{ getChartDisplayURL(entry.date,selectedItemData.chart_type) }}">
-					{{ dateStrToDate(entry.date) | date }}
-				</a>
-			</td>
-			<td>#{{ entry.position }}</td>
-		</tr>
-	</table>
-</div>
+<table class="chart">
+	<tr ng-repeat="entry in selectedItemData.entries">
+		<td>
+			<a ng-href="{{ getChartDisplayURL(entry.date,selectedItemData.chart_type) }}">
+				{{ dateStrToDate(entry.date) | date }}
+			</a>
+		</td>
+		<td>#{{ entry.position }}</td>
+	</tr>
+</table>

@@ -5,7 +5,7 @@
 
 	<div ng-controller="ArtistTimelineController">
 
-		<div id="artist-timeline-search-container">
+		<div class="searchbar">
 			<form ng-submit="search()">
 				<input id="artist" type="text" placeholder="Artist" ng-model="artistInput"/>
 				<button type="button" class="btn btn-sm btn-success" ng-click="search()">Search</button>
@@ -17,7 +17,7 @@
 		</div>
 
 		<div>
-			<table>
+			<table class="chart">
 				<tr ng-repeat="charted_item in charted_items">
 					<td>
 						<a ng-href="{{ getItemReverseLookupURL(artist, charted_item.item_name, charted_item.chart_type) }}">{{ charted_item.item_name }}</a>

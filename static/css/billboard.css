@@ -2,12 +2,16 @@ body {
 	background-color: #e6e6e6;
 }
 
-table {
+.chart {
 	border-spacing: 10px;
 	border-collapse: separate;
 	border: 1px solid #cccccc;
 	background-color: #f2f2f2;
-	margin: 20px;
+	margin: 10px;
+}
+
+.searchbar {
+	margin: 10px;
 }
 
 .titlebar-link {
@@ -29,27 +33,23 @@ table {
 	color: #737373;
 }
 
-.chart-history-date-link {
-	margin-left: 3px;
-	margin-right: 12px;
-}
-
-#btn-results {
+.graph {
 	margin: 10px;
 }
 
-#chart-history {
-	display: inline-block;
-	margin: 10px;
+.graph-svg {
+	background-color: #f2f2f2;
+	border :1px solid #cccccc;	
+}
+
+#reverse-lookup-svg {
+	background-color: #f2f2f2;
+	border: 1px solid #cccccc;
 }
 
 .graph-container {
 	float: left;
 	overflow: hidden;
-}
-
-.graph {
-	margin: 5px;
 }
 
 #titlebar {
@@ -64,6 +64,10 @@ table {
 	margin: 20px;
 }
 
+#chart-history-header {
+	margin: 10px;
+}
+
 #chart-history-list-container {
 	float: left;
 }
@@ -72,17 +76,6 @@ table {
 	display: block;
 	float: left;
 	margin: 10px;
-}
-
-#reverse-lookup-svg {
-	background-color: #f2f2f2;
-	border: 1px solid #cccccc;
-	height: 400px;
-	width: 400px;
-}
-
-#chart-history-header {
-	margin: 10px;	
 }
 
 #chart-history-item-type {
@@ -104,10 +97,6 @@ table {
 	display: inline-block;
 	font-size: 20px;
 	margin: 5px;
-}
-
-#artist-timeline-search-container {
-	margin: 10px;
 }
 
 #tooltip {

@@ -1,7 +1,7 @@
 app.directive('reverseLookupGraph', function($window) {
 	return {
 		restrict: 'EA',
-		template: "<svg id='reverse-lookup-svg'></svg>",
+		template: "<svg class='graph-svg' width='400' height='400'></svg>",
 		link: function(scope, elem, attrs) {
 
 			//var chartEntries = scope[attrs.chartData].entries;
